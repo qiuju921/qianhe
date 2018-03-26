@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['prefix' => 'manage'], function () {
+    Route::group(['prefix' => 'front', 'namespace' => 'Front'], function () {
+        Route::get('index', 'IndexController@indexView');
+        Route::group(['prefix' => 'api'], function () {
+            Route::post('index', 'IndexController@index');
+        });
+    });
+});
